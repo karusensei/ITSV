@@ -1,5 +1,5 @@
 {
-  "name": "its-validation",
+  "name": "itsv",
   "version": "1.0.0",
   "description": "Simple typescript validation module",
   "main": "index.js",
