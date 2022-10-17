@@ -7,9 +7,9 @@ export class Schema implements ISchema {
 	schema: ISchemaDef
 	validators: [RequiredValidator] = [new RequiredValidator(true)]
 
-	constructor(schemaDef: ISchemaDef, message?: string) {
+	constructor(schemaDef: ISchemaDef, requiredMessage?: string) {
 		this.schema = schemaDef
-		this.validators = [new RequiredValidator(true, message)]
+		this.setRequired(requiredMessage)
 	}
 
 	private get toArray(): [string, GenericField | Schema][] {
@@ -36,14 +36,14 @@ export class Schema implements ISchema {
 	 * 
 	 * @param j JSON String of serialized Schema
 	 */
-	static parse(j: {[key: string]: any}): Schema {
+	static parse(j: { [key: string]: any }): Schema {
 		try {
 			let schemaDef: ISchemaDef = {}
 			Object.entries(j).forEach(([fieldname, _field]) => {
 				if (_field.schema) {
-					let field = (_field as ISchema)
+					const field = (_field as ISchema)
 					const schema = Schema.parse(field.schema)
-					let fieldRequired = field.validators[0]
+					const fieldRequired = field.validators[0]
 					schema.setValidators([new RequiredValidator(fieldRequired.challenge, fieldRequired.message)])
 					schemaDef[fieldname] = schema
 				} else {
@@ -57,7 +57,7 @@ export class Schema implements ISchema {
 
 	}
 
-	static parseJsonString(j: string) {
+	static parseJsonString(j: string): Schema {
 		return this.parse(JSON.parse(j))
 	}
 
@@ -86,10 +86,8 @@ export class Schema implements ISchema {
 			let report: ISchemaReport = {}
 			this.toArray.forEach(([fieldname, field]) => report[fieldname] = field.report(data[fieldname]))
 			return report
-		} else if (this.required) {
-			return [this.validators[0].report(undefined)]
 		} else {
-			return [this.validators[0].report(undefined)]
+			return [this.requiredValidator.report(undefined)]
 		}
 	}
 }
