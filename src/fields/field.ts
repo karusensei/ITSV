@@ -18,7 +18,7 @@ export class Field {
 	}
 
 	get required() {
-		return (this.validators.find(validator => validator.name === "required") as RequiredValidator).required ?? false
+		return this.validators.find(validator => validator instanceof RequiredValidator)?.challenge ?? false
 	}
 
 
@@ -58,7 +58,7 @@ export class Field {
 	report(value?: any): Report[] {
 		if (value !== null && value !== undefined) {
 			return this.validators.map(validator => validator.report(value))
-		} else if (this.required /* && (value === null || value === undefined)*/) {
+		} else if (this.required) {
 			return [
 				new RequiredValidator(true).report(undefined)
 			]

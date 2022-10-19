@@ -30,7 +30,7 @@ export class Schema {
 	}
 
 	get requiredValidator(): RequiredValidator {
-		return this.validators.find(validator => validator.name === "required") as RequiredValidator
+		return this.validators.find(validator => validator instanceof RequiredValidator) as RequiredValidator
 	}
 
 	get required(): boolean {
@@ -81,13 +81,16 @@ export class Schema {
 		}
 	}
 
-	report(data?: { [key: string]: any }): SchemaReport | Report[] {
+	report(data?: any): SchemaReport | Report[] {
 		if (data) {
 			let report: SchemaReport = {}
-			this.toArray.forEach(([fieldname, field]) => report[fieldname] = field.report(data[fieldname]))
+			this.toArray.forEach(
+				([fieldname, field]) => {
+					report[fieldname] = field.report(data[fieldname])
+				})
 			return report
 		} else {
-			return [this.requiredValidator.report(undefined)]
+			return [this.requiredValidator.report(data)]
 		}
 	}
 }

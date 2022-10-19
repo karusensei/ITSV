@@ -19,7 +19,7 @@ export class Validator {
 		throw new Error("Method not implemented.")
 	}
 
-	report(value: any): Report {
+	report(value?: any): Report {
 		return {
 			name: this.name,
 			pass: this.validate(value),

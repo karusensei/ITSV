@@ -1,29 +1,39 @@
 import * as ITSV from "./index"
+import { Schema } from "./schema/schema"
 
 /**
- * Manual file for testing
+ * Describe a nested schemaDef
  */
 
 const nestedSchemaDef: ITSV.SchemaDef = {
-	num : new ITSV.NumberField("La donnée doit être un nombre")
+	nnum: new ITSV.NumberField("La donnée doit être un nombre")
 		.setRequired("Champ obligatoire")
 		.min(6, "Le nombre doit être >= 6")
 		.max(12, "Le nombre doit être <= 12"),
-	str : new ITSV.StringField("La donnée doit être une chaîne de caractères")
+	nstr: new ITSV.StringField("La donnée doit être une chaîne de caractères")
 		.minlength(6, "Taille minimum : 6")
 		.maxlength(16, "Taille maximum : 16")
 		.regexp(/^[A-Z]*$/, "Que des lettres majuscules")
 }
 
 const schemaDef: ITSV.SchemaDef = {
-	...nestedSchemaDef
+	num: new ITSV.NumberField("La donnée doit être un nombre")
+		.setRequired("Champ obligatoire")
+		.min(6, "Le nombre doit être >= 6")
+		.max(12, "Le nombre doit être <= 12"),
+	str: new ITSV.StringField("La donnée doit être une chaîne de caractères")
+		.minlength(6, "Taille minimum : 6")
+		.maxlength(16, "Taille maximum : 16")
+		.regexp(/^[A-Z]*$/, "Que des lettres majuscules"),
+	undefined: new ITSV.StringField().setRequired(),
+	nested: new Schema(nestedSchemaDef).setRequired("Le champ est requis !")
 }
 
 
 
 const data = {
 	num: 8,
-	str: "ABCDE"
+//	str: "ABCDE"
 }
 
 const schema = new ITSV.Schema(schemaDef)
