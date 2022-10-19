@@ -15,7 +15,6 @@ export class RequiredValidator extends GenericValidator {
 		return this.challenge
 	}
 	validate(value?: any): boolean {
-		console.log(this.challenge, value)
 		if (this.challenge && (value === null || value === undefined)) {
 			return false
 		} else {
