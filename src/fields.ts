@@ -1,9 +1,7 @@
 import { IField, TFieldName } from "./fields.types"
 import { OptionalReport } from "./reports"
 import { IValidatorReport } from "./reports.types"
-import { GenericValidator, RequiredValidator, TypeValidator, MinValidator, MaxValidator, MaxLengthValidator, MinLengthValidator, PasswordValidator, RegExpValidator, EmailValidator, DateValidator, NotBeforeValidator, NotAfterValidator } from "./validators"
-import { TValidatorFunction } from "./validators.types"
-import { Validators, TValidatorName } from "./validators.validators"
+import { GenericValidator, RequiredValidator, TypeValidator, MinValidator, MaxValidator, MaxLengthValidator, MinLengthValidator, PasswordValidator, RegExpValidator, EmailValidator, DateValidator, NotBeforeValidator, NotAfterValidator, TValidatorFunction, Validators, TValidatorName } from "./validators/exports"
 
 
 export class GenericField {

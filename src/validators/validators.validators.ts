@@ -14,7 +14,7 @@ import {
 	RegExpValidator,
 	RequiredValidator,
 	TypeValidator
-	} from './validators';
+	} from './exports';
 
 export type TValidatorName = "generic"
 	| "required"

@@ -14,3 +14,7 @@ export { RequiredValidator } from "./validator.required"
 export { TypeValidator } from "./validator.type"
 export { GenericValidator } from "./validator.generic"
 export { IValidatorReport } from "./i.validator.report"
+export { Validators, TValidatorName } from "./validators.validators"
+
+
+export type TValidatorFunction = (value: any) => boolean

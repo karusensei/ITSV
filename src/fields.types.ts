@@ -1,8 +1,6 @@
 import { GenericField, BooleanField, NumberField, StringField, DateField } from "./fields"
 import { IValidatorReport } from "./reports.types"
-import { GenericValidator } from "./validators"
-import { TValidatorFunction } from "./validators.types"
-
+import { GenericValidator, TValidatorFunction } from "./validators/exports"
 
 
 export type TFieldName = "generic" | "boolean" | "number" | "string" | "date"

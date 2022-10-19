@@ -1,7 +1,7 @@
 import { GenericField } from "./fields";
 import { ISchemaReport, IValidatorReport } from "./reports.types";
 import { Schema } from "./schema";
-import { GenericValidator, RequiredValidator } from "./validators";
+import { GenericValidator, RequiredValidator } from "./index";
 
 export interface ISchemaDef {
 	[key: string]: GenericField | Schema
