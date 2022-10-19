@@ -1,6 +1,6 @@
-import { GenericValidator } from "./validator.generic"
+import { Validator } from "./validator"
 
-export class NotBeforeValidator extends GenericValidator {
+export class NotBeforeValidator extends Validator {
 	name = "notbefore"
 	challenge: Date
 	constructor(

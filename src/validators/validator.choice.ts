@@ -1,6 +1,6 @@
-import { GenericValidator } from "./validator.generic"
+import { Validator } from "./validator"
 
-export class ChoiceValidator extends GenericValidator {
+export class ChoiceValidator extends Validator {
 	name = "choice"
 	challenge: Array<any> = []
 	constructor(

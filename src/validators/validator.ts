@@ -1,6 +1,6 @@
-import { IValidatorReport } from "./i.validator.report"
+import { Report } from "../reports/exports"
 
-export class GenericValidator {
+export class Validator {
 
 	name = "generic"
 	message = "generic validator don't pass"
@@ -19,7 +19,7 @@ export class GenericValidator {
 		throw new Error("Method not implemented.")
 	}
 
-	report(value: any): IValidatorReport {
+	report(value: any): Report {
 		return {
 			name: this.name,
 			pass: this.validate(value),

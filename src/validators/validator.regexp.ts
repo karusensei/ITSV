@@ -1,6 +1,6 @@
-import { GenericValidator } from "./validator.generic"
+import { Validator } from "./validator"
 
-export class RegExpValidator extends GenericValidator {
+export class RegExpValidator extends Validator {
 	name = "regexp"
 	challenge: string
 	constructor(

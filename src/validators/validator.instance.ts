@@ -1,4 +1,4 @@
-import { GenericValidator } from "./validator.generic"
+import { Validator } from "./validator"
 
 type TInstances = "array" | "date" | "object"
 
@@ -9,7 +9,7 @@ const Instances: {[key in TInstances] : any} = {
 }
 
 
-export class InstanceValidator extends GenericValidator {
+export class InstanceValidator extends Validator {
 	name = "instance"
 	challenge: TInstances
 	constructor(

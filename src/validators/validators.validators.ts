@@ -2,7 +2,7 @@ import {
 	ChoiceValidator,
 	DateValidator,
 	EmailValidator,
-	GenericValidator,
+	Validator,
 	InstanceValidator,
 	MaxLengthValidator,
 	MaxValidator,
@@ -33,7 +33,7 @@ export type TValidatorName = "generic"
 	| "notafter"
 
 export const Validators: {[key in TValidatorName]: any} = {
-	generic: GenericValidator,
+	generic: Validator,
 	required: RequiredValidator,
 	type: TypeValidator,
 	minlength: MinLengthValidator,

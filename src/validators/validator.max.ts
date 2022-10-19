@@ -1,6 +1,6 @@
-import { GenericValidator } from "./validator.generic"
+import { Validator } from "./validator"
 
-export class MaxValidator extends GenericValidator {
+export class MaxValidator extends Validator {
 	name = "max"
 	challenge: number
 	constructor(

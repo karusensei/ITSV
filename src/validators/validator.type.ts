@@ -1,6 +1,6 @@
-import { GenericValidator } from "./validator.generic"
+import { Validator } from "./validator"
 
-export class TypeValidator extends GenericValidator {
+export class TypeValidator extends Validator {
 	name = "type"
 	challenge: "string" | "number" | "boolean"
 	constructor(

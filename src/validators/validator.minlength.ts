@@ -1,6 +1,6 @@
-import { GenericValidator } from "./validator.generic"
+import { Validator } from "./validator"
 
-export class MinLengthValidator extends GenericValidator {
+export class MinLengthValidator extends Validator {
 	name = "minlength"
 	challenge: number
 	constructor(

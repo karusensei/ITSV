@@ -1,6 +1,6 @@
-import { IValidatorReport } from "./reports.types";
+import { Report } from "./exports";
 
-export const OptionalReport: IValidatorReport = {
+export const OptionalReport: Report = {
 	name: "optional",
 	pass: true,
 	message: "Optional value not submitted",

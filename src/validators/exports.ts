@@ -12,8 +12,7 @@ export { PasswordValidator } from "./validator.password"
 export { RegExpValidator } from "./validator.regexp"
 export { RequiredValidator } from "./validator.required"
 export { TypeValidator } from "./validator.type"
-export { GenericValidator } from "./validator.generic"
-export { IValidatorReport } from "./i.validator.report"
+export { Validator } from "./validator"
 export { Validators, TValidatorName } from "./validators.validators"
 
 
