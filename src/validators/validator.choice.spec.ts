@@ -28,7 +28,7 @@ const playtest:PlayTest[] = [
 	{
 		validator: new ChoiceValidator(["a"]),
 		test: undefined,
-		shouldBe: true
+		shouldBe: false
 	},
 
 

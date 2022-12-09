@@ -1,5 +1,6 @@
 import { equal } from "assert";
-import { DateValidator as TestingValidator} from "./validator.date";
+import { EqualTests, PlayTest } from "./test";
+import { DateValidator, DateValidator as TestingValidator} from "./validator.date";
 
 
 let validatorParam: string | undefined = undefined
@@ -7,44 +8,40 @@ let test: any = ""
 let shouldbe = true
 
 
-describe("DateValidator", () => {
+const playtests: PlayTest[] = [
+	{
+		validator: new DateValidator(),
+		test: 1667722518283,
+		shouldBe: true
+	},
+	{
+		validator: new DateValidator(),
+		test: "2022-11-06T08:15:18.283Z",
+		shouldBe: true
+	},
+	{
+		validator: new DateValidator(),
+		test: "non-date-value",
+		shouldBe: false
+	},
+	{
+		validator: new DateValidator(),
+		test: undefined,
+		shouldBe: false
+	},
 
-	describe(`validate()`, () => {
+	// Boolean is also a number...
 
-		// ValidatorParam with default value
-		test = 1667722518283 ; shouldbe = true
-		it(`ValidatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new TestingValidator().validate(test), shouldbe);
-		})
+	{
+		validator: new DateValidator(),
+		test: true,
+		shouldBe: true
+	},
+	{
+		validator: new DateValidator(),
+		test: false,
+		shouldBe: true
+	},
+]
 
-		test = "2022-11-06T08:15:18.283Z" ; shouldbe = true
-		it(`ValidatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new TestingValidator().validate(test), shouldbe);
-		})
-
-		test = "NonDateValue" ; shouldbe = false
-		it(`ValidatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new TestingValidator().validate(test), shouldbe);
-		})
-
-		// ValidatorParam as custom value (only date expected)
-		validatorParam = "date"
-		
-		test = 1667722518283 ; shouldbe = true
-		it(`ValidatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new TestingValidator(validatorParam).validate(test), shouldbe);
-		})
-
-		test = "2022-11-06T08:15:18.283Z" ; shouldbe = true
-		it(`ValidatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new TestingValidator(validatorParam).validate(test), shouldbe);
-		})
-
-		test = "NonDateValue" ; shouldbe = false
-		it(`ValidatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new TestingValidator(validatorParam).validate(test), shouldbe);
-		})
-
-	})
-
-});
+EqualTests("DateValidator", playtests)

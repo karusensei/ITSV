@@ -4,13 +4,14 @@ export class DateValidator extends Validator {
 	name = "date"
 	challenge: string
 	constructor(
-		instance: string = "date",
+		challenge: string = "date",
 		message: string = `Submitted value must be a valid date`
 	) {
 		super()
 		this.message = message
-		this.challenge = instance
+		this.challenge = challenge
 	}
+
 	validate(value: string | Date): boolean {
 		let date = new Date()
 		if (value instanceof Date) {

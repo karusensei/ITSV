@@ -1,0 +1,14 @@
+import { EqualTests, PlayTest } from "./test"
+
+const playtests :PlayTest[] = [
+
+	{
+		validator: new ,
+		test: ,
+		shouldBe: true
+	},
+
+]
+
+
+EqualTests("ValidatorName", playtests)

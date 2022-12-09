@@ -16,12 +16,12 @@ export function EqualTests(
 ) {
 
 	describe(`${validatorName}`, () => {
-		describe('validate()', () => {
+		describe(`validate() : ${playtests.length} tests`, () => {
 
-			playtests.forEach(playtest => {
+			playtests.forEach((playtest, index) => {
 
 
-				it(`${validatorName}(${JSON.stringify(playtest.validator, undefined , 2)})
+				it(`${index + 1}) ${validatorName}(${JSON.stringify(playtest.validator.challenge, undefined , 2)})
 	validate( ${playtest.test} ) === ${playtest.shouldBe}
 `,
 					() => {

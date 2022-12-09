@@ -12,6 +12,6 @@ export class ChoiceValidator extends Validator {
 		this.challenge = choices
 	}
 	validate(value: any[]) {
-		return value.every((v) => this.challenge.some((element) => v === element))
+		return value?.every((v) => this.challenge.some((element) => v === element)) ?? false
 	}
 }

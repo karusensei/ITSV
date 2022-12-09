@@ -12,7 +12,7 @@ export interface IValidator {
 	challenge: any
 
 	setValidate(validate: (value: any) => boolean): any
-	validate<T>(value: T): boolean
+	validate(value: any): boolean
 	report(value: any): Report
 }
 
@@ -31,6 +31,7 @@ export class Validator implements IValidator {
 	setValidate(validate: (value: any) => boolean): void {
 		this.validate = validate
 	}
+
 
 	validate(value: any): boolean {
 		throw new Error("Method not implemented.")

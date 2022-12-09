@@ -5,67 +5,78 @@ let validatorParam: boolean | undefined = true
 let test: any = "submitted"
 let shouldbe = true
 
-describe("RequiredValidator", () => {
 
-	describe("validate()", () => {
-
-		// ValidatorParam setted to true
-
-		validatorParam = true;
-		
-		test = "any" ; shouldbe = true
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
-		})
-
-		test = null; shouldbe = false
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
-		})
-
-		test = undefined; shouldbe = false
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
-		})
+import { EqualTests, PlayTest } from "./test"
 
 
-		// Validator param setted to false
 
-		validatorParam = false
-		
-		test = "any"; shouldbe = true
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
-		})
 
-		test = null; shouldbe = true
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
-		})
 
-		test = undefined; shouldbe = true
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
-		})
+const playtests :PlayTest[] = [
 
-		// Validator param as default value
-		validatorParam = undefined
+	// Pass test
 
-		test = "any" ; shouldbe = true
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator().validate(test), shouldbe);
-		})
+	{
+		validator: new RequiredValidator() ,
+		test: "any",
+		shouldBe: true
+	},
+	{
+		validator: new RequiredValidator() ,
+		test: false,
+		shouldBe: true
+	},
+	{
+		validator: new RequiredValidator() ,
+		test: true,
+		shouldBe: true
+	},
 
-		test = null; shouldbe = false
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator().validate(test), shouldbe);
-		})
 
-		test = undefined; shouldbe = false
-		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
-			equal(new RequiredValidator().validate(test), shouldbe);
-		})
 
-	})
+	{
+		validator: new RequiredValidator() ,
+		test: null,
+		shouldBe: false
+	},
+	{
+		validator: new RequiredValidator() ,
+		test: undefined,
+		shouldBe: false
+	},
 
-});
+
+	{
+		validator: new RequiredValidator(false) ,
+		test: "any",
+		shouldBe: true
+	},
+	{
+		validator: new RequiredValidator(false) ,
+		test: false,
+		shouldBe: true
+	},
+	{
+		validator: new RequiredValidator(false) ,
+		test: true,
+		shouldBe: true
+	},
+
+
+
+	{
+		validator: new RequiredValidator(false) ,
+		test: null,
+		shouldBe: true
+	},
+	{
+		validator: new RequiredValidator(false) ,
+		test: undefined,
+		shouldBe: true
+	},
+
+
+]
+
+
+EqualTests("RequiredValidator", playtests)
