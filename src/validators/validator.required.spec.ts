@@ -1,31 +1,69 @@
 import { equal } from "assert";
 import { RequiredValidator} from "./validator.required";
 
+let validatorParam: boolean | undefined = true
+let test: any = "submitted"
+let shouldbe = true
+
 describe("RequiredValidator", () => {
 
 	describe("validate()", () => {
-		it(`should be true when required = true and submitted not null or undefined`, () => {
-			equal(new RequiredValidator(true).validate("submitted"), true);
+
+		// ValidatorParam setted to true
+
+		validatorParam = true;
+		
+		test = "any" ; shouldbe = true
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
 		})
 
-		it(`should be false when required = true and submitted is null`, () => {
-			equal(new RequiredValidator(true).validate(null), false);
+		test = null; shouldbe = false
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
 		})
 
-		it(`should be false when required = true and submitted is undefined`, () => {
-			equal(new RequiredValidator(true).validate(undefined), false);
+		test = undefined; shouldbe = false
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
 		})
 
-		it(`should be true when required = false and submitted is submitted`, () => {
-			equal(new RequiredValidator(false).validate("submitted"), true);
+
+		// Validator param setted to false
+
+		validatorParam = false
+		
+		test = "any"; shouldbe = true
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
 		})
 
-		it(`should be true when required = false and submitted is null`, () => {
-			equal(new RequiredValidator(false).validate(null), true);
+		test = null; shouldbe = true
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
 		})
 
-		it(`should be true when required = false and submitted is undefined`, () => {
-			equal(new RequiredValidator(false).validate(undefined), true);
+		test = undefined; shouldbe = true
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator(validatorParam).validate(test), shouldbe);
+		})
+
+		// Validator param as default value
+		validatorParam = undefined
+
+		test = "any" ; shouldbe = true
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator().validate(test), shouldbe);
+		})
+
+		test = null; shouldbe = false
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator().validate(test), shouldbe);
+		})
+
+		test = undefined; shouldbe = false
+		it(`validatorParam = [${validatorParam}]\t val = ${test}\t ${shouldbe}`, () => {
+			equal(new RequiredValidator().validate(test), shouldbe);
 		})
 
 	})

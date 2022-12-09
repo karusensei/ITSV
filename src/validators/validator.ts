@@ -1,6 +1,23 @@
 import { Report } from "../reports/exports"
 
-export class Validator {
+export type IValidatorConstructorParams = [challenge?: any, message?: string]
+
+export interface IValidatorConstructor {
+	new(challenge?: any, message?: string): IValidator
+}
+
+export interface IValidator {
+	name: string
+	message: string
+	challenge: any
+
+	setValidate(validate: (value: any) => boolean): any
+	validate<T>(value: T): boolean
+	report(value: any): Report
+}
+
+
+export class Validator implements IValidator {
 
 	name = "generic"
 	message = "generic validator don't pass"
@@ -11,7 +28,7 @@ export class Validator {
 		this.validate = challenge ?? this.validate
 	}
 
-	setValidate(validate : (value: any) => boolean): void {
+	setValidate(validate: (value: any) => boolean): void {
 		this.validate = validate
 	}
 
