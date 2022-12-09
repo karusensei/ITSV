@@ -1,5 +1,5 @@
 import { equal } from "assert";
-import { Validator, IValidatorConstructor, IValidatorConstructorParams } from "./validator";
+import { Validator } from "./validator";
 
 export interface PlayTest {
 
