@@ -1,4 +1,4 @@
-import { EqualTests, PlayTest } from "./test";
+import { EqualTests, PlayTest } from "./equal.tests";
 import { EmailValidator } from "./validator.email";
 
 
@@ -47,7 +47,7 @@ const playtests: PlayTest[] = [
 		shouldBe: false
 	},
 
-	// Without local
+	// Without account name
 
 	{
 		validator: new EmailValidator(),

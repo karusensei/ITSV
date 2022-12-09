@@ -12,7 +12,7 @@ export class MaxLengthValidator extends Validator {
 		this.challenge = maxlength
 	}
 
-	validate(value: string) {
-		return value.length <= this.challenge
+	validate(value?: string) {
+		return (value?.length ?? 0) <= this.challenge
 	}
 }

@@ -6,7 +6,7 @@ let test: any = "submitted"
 let shouldbe = true
 
 
-import { EqualTests, PlayTest } from "./test"
+import { EqualTests, PlayTest } from "./equal.tests"
 
 
 

@@ -1,5 +1,5 @@
 import { equal } from "assert";
-import { EqualTests, PlayTest } from "./test";
+import { EqualTests, PlayTest } from "./equal.tests";
 import { DateValidator, DateValidator as TestingValidator} from "./validator.date";
 
 

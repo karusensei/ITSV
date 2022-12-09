@@ -1,4 +1,4 @@
-import { EqualTests, PlayTest } from "./test"
+import { EqualTests, PlayTest } from "./equal.tests"
 import { InstanceValidator } from "./validator.instance"
 
 

@@ -1,4 +1,4 @@
-import { EqualTests, PlayTest } from "./test"
+import { EqualTests, PlayTest } from "./equal.tests"
 import { MaxValidator } from "./validator.max"
 
 const playtests :PlayTest[] = [

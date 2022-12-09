@@ -1,57 +1,30 @@
-import { equal } from "assert";
-import { EqualTests, PlayTest } from "./test";
-import { ChoiceValidator} from "./validator.choice";
-
-
-let validatorParam = ["A",5]
-let test: any[] = ["A"]
-let shouldbe = true
-
-
-const playtest:PlayTest[] = [
-
-	// Pass test
-
-	{
-		validator: new ChoiceValidator(["a"]),
-		test: ["a"],
-		shouldBe: true
-	},
-	{
-		validator: new ChoiceValidator(["a"]),
-		test: ["a"],
-		shouldBe: true
-	},
-
-	// Empty test value
-
-	{
-		validator: new ChoiceValidator(["a"]),
-		test: undefined,
-		shouldBe: false
-	},
-
-
-	// Case sensitive
-
-	{
-		validator: new ChoiceValidator(["A"]),
-		test: ["a"],
-		shouldBe: false
-	},
-
-	// Not same type
-
-	{
-		validator: new ChoiceValidator(["a"]),
-		test: [5],
-		shouldBe: false
-	},
+import { ChoiceValidator } from "./validator.choice";
+import { TrueFalseBulkTests } from "./bulk.tests"
+import { booleanTestsValue, nullableTestsValue } from "./equal.tests"
 
 
 
 
-] 
+TrueFalseBulkTests(
+	"ChoiceValidator",
+	new ChoiceValidator([0, 10, 20, "abcd", "Abcd"]),
+	[
+		{
+			shouldBe: true,
+			tests: [[0], [10, 0], [20], ["abcd"], [0, 10, 20, "abcd", "Abcd"]]
+		}, {
+			shouldBe: false,
+			tests: [
+				[
+					...nullableTestsValue, ...booleanTestsValue,
+					1, 11, -1, 0.0000005, "a", "A", "ZA", "za",
+					[1, 0], [new Date(355), 0]
+				].flatMap(v => [v]),
+				...nullableTestsValue,
+				...booleanTestsValue, new Date(355),
+				1, 11, -1, 0.0000005, "a", "A", "ZA", "za",
+			]
+		}
+	]
 
-
-EqualTests("ChoiceValidator", playtest)
+)

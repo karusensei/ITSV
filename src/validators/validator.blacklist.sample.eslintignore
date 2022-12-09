@@ -1,0 +1,49 @@
+/*
+const playtest:PlayTest[] = [
+
+	// Pass test
+
+	{
+		validator: new ChoiceValidator(["a"]),
+		test: ["a"],
+		shouldBe: true
+	},
+	{
+		validator: new ChoiceValidator(["a"]),
+		test: ["a"],
+		shouldBe: true
+	},
+
+	// Empty test value
+
+	{
+		validator: new ChoiceValidator(["a"]),
+		test: undefined,
+		shouldBe: false
+	},
+
+
+	// Case sensitive
+
+	{
+		validator: new ChoiceValidator(["A"]),
+		test: ["a"],
+		shouldBe: false
+	},
+
+	// Not same type
+
+	{
+		validator: new ChoiceValidator(["a"]),
+		test: [5],
+		shouldBe: false
+	},
+
+
+
+
+] 
+
+
+EqualTests("ChoiceValidator", playtest)
+*/

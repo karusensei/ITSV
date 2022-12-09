@@ -1,5 +1,6 @@
-export { InstanceValidator } from "./validator.instance"
+export { BlacklistValidator } from "./validator.blacklist"
 export { ChoiceValidator } from "./validator.choice"
+export { InstanceValidator } from "./validator.instance"
 export { DateValidator } from "./validator.date"
 export { EmailValidator } from "./validator.email"
 export { MaxValidator } from "./validator.max"
