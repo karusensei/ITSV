@@ -1,47 +1,29 @@
-import { equal } from "assert";
-import { EqualTests, PlayTest } from "./equal.tests";
-import { DateValidator, DateValidator as TestingValidator} from "./validator.date";
+import { BulkValidatorTest } from "./bulk.tests";
+import { nullableTestsValue } from "./equal.tests";
+import { DateValidator } from "./validator.date";
 
 
-let validatorParam: string | undefined = undefined
-let test: any = ""
-let shouldbe = true
 
-
-const playtests: PlayTest[] = [
-	{
-		validator: new DateValidator(),
-		test: 1667722518283,
-		shouldBe: true
-	},
-	{
-		validator: new DateValidator(),
-		test: "2022-11-06T08:15:18.283Z",
-		shouldBe: true
-	},
-	{
-		validator: new DateValidator(),
-		test: "non-date-value",
-		shouldBe: false
-	},
-	{
-		validator: new DateValidator(),
-		test: undefined,
-		shouldBe: false
-	},
-
-	// Boolean is also a number...
-
-	{
-		validator: new DateValidator(),
-		test: true,
-		shouldBe: true
-	},
-	{
-		validator: new DateValidator(),
-		test: false,
-		shouldBe: true
-	},
-]
-
-EqualTests("DateValidator", playtests)
+BulkValidatorTest(
+	"DateValidator",
+	new DateValidator(),
+	[
+		{
+			shouldBe: true,
+			tests: [
+				1667722518283,
+				"2022-11-06T08:15:18.283Z",
+				true,
+				false
+			],
+		}, {
+			shouldBe: false,
+			tests: [
+				"not-a-date",
+				nullableTestsValue,
+				1564898456465432154987798,
+				{ hello: "ola"}
+			]
+		}
+	]
+)

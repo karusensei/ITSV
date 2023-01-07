@@ -16,6 +16,6 @@ export class NotAfterValidator extends Validator {
 		this.message = message
 	}
 	validate(value: Date): boolean {
-		return value >= this.challenge
+		return value <= this.challenge
 	}
 }

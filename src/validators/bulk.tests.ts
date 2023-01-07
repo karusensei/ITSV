@@ -1,11 +1,18 @@
+import { Field } from "../fields/field"
+import { Schema } from "../schema/schema"
 import { EqualTests } from "./equal.tests"
 import { Validator } from "./validator"
 
 type Test = any
-
-export function TrueFalseBulkTests(
+/**
+ * 
+ * @param validatorName 
+ * @param validator 
+ * @param testList 
+ */
+export function BulkValidatorTest(
 	validatorName: string,
-	validator: Validator,
+	validator: Validator | Field | Schema,
 	testList: {
 		shouldBe: boolean,
 		tests: any[]

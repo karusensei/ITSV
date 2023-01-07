@@ -7,7 +7,6 @@ export class DateField extends Field {
 	constructor(message: string = "Date must be valid") {
 		super()
 		this.validators.push(new DateValidator("date", message))
-		return this
 	}
 
 	notBefore(date: Date | string, message?: string) {

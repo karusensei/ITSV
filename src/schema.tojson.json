@@ -1,0 +1,141 @@
+{
+	"@timestamp": {
+		"field": "date",
+		"validators": [
+			{
+				"name": "date",
+				"message": "Date must be valid",
+				"challenge": "date"
+			}
+		],
+		"anonymousValidators": []
+	},
+	"host": {
+		"validators": [
+			{
+				"name": "required",
+				"message": "Field missing",
+				"challenge": true
+			}
+		],
+		"_schema": {
+			"id": {
+				"field": "string",
+				"validators": [
+					{
+						"name": "type",
+						"message": "Type does not match",
+						"challenge": "string"
+					},
+					{
+						"name": "required",
+						"message": "Field missing",
+						"challenge": true
+					}
+				],
+				"anonymousValidators": []
+			},
+			"hostname": {
+				"field": "string",
+				"validators": [
+					{
+						"name": "type",
+						"message": "Type does not match",
+						"challenge": "string"
+					},
+					{
+						"name": "required",
+						"message": "Field missing",
+						"challenge": true
+					}
+				],
+				"anonymousValidators": []
+			}
+		}
+	},
+	"counters": {
+		"validators": [
+			{
+				"name": "required",
+				"message": "Field missing",
+				"challenge": true
+			}
+		],
+		"_schema": {
+			"negative": {
+				"field": "number",
+				"validators": [
+					{
+						"name": "type",
+						"message": "Type does not match",
+						"challenge": "number"
+					},
+					{
+						"name": "max",
+						"message": "Number too large",
+						"challenge": 0
+					}
+				],
+				"anonymousValidators": []
+			},
+			"positive": {
+				"field": "number",
+				"validators": [
+					{
+						"name": "type",
+						"message": "Type does not match",
+						"challenge": "number"
+					},
+					{
+						"name": "min",
+						"message": "Number too small",
+						"challenge": 0
+					}
+				],
+				"anonymousValidators": []
+			},
+			"positiveInterval": {
+				"field": "number",
+				"validators": [
+					{
+						"name": "type",
+						"message": "Type does not match",
+						"challenge": "number"
+					},
+					{
+						"name": "min",
+						"message": "Number too small",
+						"challenge": 0
+					},
+					{
+						"name": "max",
+						"message": "Number too large",
+						"challenge": 10
+					}
+				],
+				"anonymousValidators": []
+			},
+			"negativeInterval": {
+				"field": "number",
+				"validators": [
+					{
+						"name": "type",
+						"message": "Type does not match",
+						"challenge": "number"
+					},
+					{
+						"name": "min",
+						"message": "Number too small",
+						"challenge": -10
+					},
+					{
+						"name": "max",
+						"message": "Number too large",
+						"challenge": -1
+					}
+				],
+				"anonymousValidators": []
+			}
+		}
+	}
+}

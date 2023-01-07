@@ -1,9 +1,9 @@
 
-import { TrueFalseBulkTests } from "./bulk.tests"
+import { BulkValidatorTest } from "./bulk.tests"
 import { booleanTestsValue, nullableTestsValue } from "./equal.tests"
 import { BlacklistValidator } from "./validator.blacklist"
 
-TrueFalseBulkTests(
+BulkValidatorTest(
 	"BlacklistValidator",
 	new BlacklistValidator([0, 10, 20, "abcd", "Abcd"]),
 	[

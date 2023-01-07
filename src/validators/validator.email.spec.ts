@@ -1,79 +1,27 @@
-import { EqualTests, PlayTest } from "./equal.tests";
+import { BulkValidatorTest } from "./bulk.tests";
+import { booleanTestsValue, EqualTests, nullableTestsValue, PlayTest } from "./equal.tests";
 import { EmailValidator } from "./validator.email";
 
 
 
-const playtests: PlayTest[] = [
-
-	// Conform Email
-
-	{
-		validator: new EmailValidator(),
-		test: "abc.def@ghi.jkl",
-		shouldBe: true
-	},
-	{
-		validator: new EmailValidator(),
-		test: "Test@1234.fr",
-		shouldBe: true
-	},
-
-	// 
-
-	{
-		validator: new EmailValidator(),
-		test: undefined,
-		shouldBe: false
-	},
-	{
-		validator: new EmailValidator(),
-		test: "",
-		shouldBe: false
-	},
-
-	// Without @
-
-	{
-		validator: new EmailValidator(),
-		test: "zfazgmail.com",
-		shouldBe: false
-	},
-
-	// Without tld
-
-	{
-		validator: new EmailValidator(),
-		test: "salut@gmailcom",
-		shouldBe: false
-	},
-
-	// Without account name
-
-	{
-		validator: new EmailValidator(),
-		test: "@gmail.com",
-		shouldBe: false
-	},
-
-	// Without fqdn
-
-	{
-		validator: new EmailValidator(),
-		test: "salut@",
-		shouldBe: false
-	},
-
-]
-
-
-
-
-/**
- * 
- * RUN TESTS
- * 
- */
-
-EqualTests(`EmailValidator`, playtests)
+BulkValidatorTest(
+	"EmailValidator",
+	new EmailValidator(),
+	[
+		{
+			shouldBe: true,
+			tests : [
+				"abc.def@ghi.jkl", "Test@1234.fr", "a.b-c@d.e.f.g-aa.com", "a.b-c_@d.e.f.g-aa.com"
+			],
+		}, {
+			shouldBe: false,
+			tests: [
+				...nullableTestsValue, ...booleanTestsValue, "@gmail.com", "abc.def.test.com",
+				"abc.def@", "test test test at.com", "a.b-c_@_d.e.f.g-aa.com", new Date(), 18, 1000,
+				-1
+			]
+		}
+	]
+)
 
 

@@ -1,6 +1,17 @@
 import { Report } from "../reports/exports"
+import { TValidatorName } from "./validators.validators"
 
-export class Validator {
+
+interface IValidator {
+	name: TValidatorName | string
+	message: string
+	challenge: any
+	validate(value: any): boolean
+	report(value?: any): Report
+}
+
+
+export class Validator implements IValidator {
 
 	name = "generic"
 	message = "generic validator don't pass"
@@ -14,7 +25,6 @@ export class Validator {
 	setValidate(validate: (value: any) => boolean): void {
 		this.validate = validate
 	}
-
 
 	validate(value: any): boolean {
 		throw new Error("Method not implemented.")

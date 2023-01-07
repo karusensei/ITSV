@@ -1,8 +1,9 @@
 import { equal } from "assert";
+import { Field, Schema } from "..";
 import { Validator } from "./validator";
 
 export interface PlayTest {
-	validator: Validator
+	validator: Validator | Field | Schema
 	test: any,
 	shouldBe: boolean
 }
@@ -30,7 +31,7 @@ export function EqualTests(
 
 
 				it(`${index + 1}) ${validatorName}(${JSON.stringify(playtest.validator.challenge, undefined, 2)})
-	validate( ${playtest.test} ) === ${playtest.shouldBe}
+	validate( ${JSON.stringify(playtest.test)} ) === ${playtest.shouldBe}
 `, () => {
 					equal(
 						playtest.validator.validate(playtest.test),
