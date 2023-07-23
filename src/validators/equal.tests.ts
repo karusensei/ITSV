@@ -3,7 +3,7 @@ import { Field, Schema } from "..";
 import { Validator } from "./validator";
 
 export interface PlayTest {
-	validator: Validator | Field | Schema
+	validator: Validator
 	test: any,
 	shouldBe: boolean
 }
@@ -30,7 +30,9 @@ export function EqualTests(
 			playtests.forEach((playtest, index) => {
 
 
-				it(`${index + 1}) ${validatorName}(${JSON.stringify(playtest.validator.challenge, undefined, 2)})
+				it(`${index + 1}) ${validatorName}(
+					${JSON.stringify(playtest.validator.challenge, undefined, 2)}
+					)
 	validate( ${JSON.stringify(playtest.test)} ) === ${playtest.shouldBe}
 `, () => {
 					equal(

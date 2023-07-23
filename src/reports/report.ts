@@ -1,5 +1,5 @@
 export interface SchemaReport {
-	[key: string]: Report[] | SchemaReport
+	[key: string]: Report | SchemaReport | SchemaReport[] | Report[]
 }
 export interface Report {
 	name: string,

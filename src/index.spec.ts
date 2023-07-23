@@ -1,18 +1,18 @@
 import { equal } from "assert";
 import { randomUUID } from "crypto";
-import { CustomField } from "./fields/field.custom";
 import { DateField } from "./fields/field.date";
 import { NumberField } from "./fields/field.number";
 import { StringField } from "./fields/field.string";
-import { Schema, SchemaDef } from "./schema/schema";
+import { Schema } from "./schema/schema";
 
 
-const schema = new Schema({
-	'@timestamp': new DateField(),
+const schemaDef = {
+//	'@timestamp': new DateField(),
 	host: new Schema({
 		id: new StringField().required(),
-		hostname: new StringField().required()
-	}),
+//		hostname: new StringField().required()
+	}).required(undefined, true),
+/*
 	counters: new Schema({
 		negative: new NumberField().max(0),
 		positive: new NumberField().min(0),
@@ -24,14 +24,14 @@ const schema = new Schema({
 		nbdate: new DateField().notBefore(new Date(50000)),
 		nadate: new DateField().notAfter(new Date(50000)),
 		ivdate: new DateField().notBefore(new Date(40000)).notAfter(new Date(50000))
-	})
-})
+	})*/
+}
 
-const data = {
-	'@timestamp': new Date(),
+const data_sample = {
+//	'@timestamp': new Date(),
 	host: {
 		id: randomUUID(),
-		hostname: "host1.example.com"
+//		hostname: "host1.example.com"
 	},
 	counters: {
 		negative: -5,
@@ -48,6 +48,16 @@ const data = {
 }
 
 
+const schema = new Schema({
+//	nested: new Schema(schemaDef),
+	...schemaDef
+}).required(undefined, false)
+
+const data = {
+//	nested: data_sample,
+	...data_sample
+}
+
 describe(`Schema`, () => {
 	describe(`Simple Validation`, () => {
 		it(`TRUE`, () => {
@@ -55,19 +65,30 @@ describe(`Schema`, () => {
 
 		})
 	}),
-		describe(`Schema JSONify, parse and validate`, () => {
-			it(`TRUE`, () => {
-				equal(Schema.fromJSON(schema.toJSON).validate(data), true)
+	describe(`Schema JSONify, parse and validate`, () => {
+		it(`TRUE`, () => {
+			equal(Schema.parse(JSON.parse(JSON.stringify(schema))).validate(data), true)
 
-			})
 		})
+	}),
+	describe(`Schema JSONify, parse must be equal`, () => {
+		it(`TRUE`, () => {
+			equal(JSON.stringify(Schema.parse(JSON.parse(JSON.stringify(schema)))), JSON.stringify(schema))
+
+		})
+	})
 })
 
 console.time("Parsing")
 console.time("Request")
-console.log(schema.toJSON)
+console.log(JSON.stringify(schema))
 console.timeEnd("Parsing")
 
 console.log(JSON.stringify(schema.report(data)))
 
 console.timeEnd("Request")
+
+
+console.log(JSON.stringify(schema, undefined, "\t"))
+
+Schema.parse(JSON.parse(JSON.stringify(schema, undefined, "\t")))

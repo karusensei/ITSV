@@ -5,6 +5,7 @@ import { MaxValidator, MinValidator, TypeValidator } from '../validators/exports
 
 export class NumberField extends Field {
 	field = "number"
+
 	constructor(message?: string) {
 		super()
 		this.validators.push(new TypeValidator("number", message))

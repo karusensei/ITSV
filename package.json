@@ -2,10 +2,11 @@
 	"name": "itsv",
 	"version": "1.0.0",
 	"description": "Simple typescript validation module",
-	"main": "index.js",
+	"main": "build/index.js",
 	"scripts": {
 		"test": "ts-mocha -p tsconfig.json $(find ./src -name '*.spec.ts')",
-		"dev": "nodemon src/test.ts"
+		"dev": "nodemon src/test.ts --watch 'src/**/*.ts' --ignore 'src/**/*.json'",
+		"build": "tsc"
 	},
 	"author": "CC",
 	"license": "GPL-3.0-or-later",
@@ -17,5 +18,8 @@
 		"ts-mocha": "^10.0.0",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.8.3"
+	},
+	"dependencies": {
+		"ts-node-dev": "^2.0.0"
 	}
 }

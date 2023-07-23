@@ -1,43 +1,70 @@
 import { OptionalReport, Report, SchemaReport } from '../reports/exports';
-import { Schema } from '../schema/schema';
 import {
 	RequiredValidator,
-	TValidatorFunction,
 	TValidatorName,
 	Validator,
-	Validators
+	Validators,
 } from '../validators/exports';
 
 
 export interface IField {
 	isRequired: boolean
-	required(message: string): Field | Schema
+	required(message: string): Field
 	validate(value?: any): boolean
 	report(value?: any): SchemaReport | Report[]
 }
 
-export class Field implements IField{
-	readonly validators: Array<Validator> = []
+export class Field implements IField {
+	validators: Array<Validator> = []
 
 	constructor(
 		readonly field: string = "generic"
 	) { }
 
 	get isRequired(): boolean {
-		return this.validators.find(validator => validator instanceof RequiredValidator)?.challenge ?? false
+		return this.requiredValidator?.challenge ?? false
 	}
 
-	static parse(_field: { field: string, validators: Validator[] }): Field {
+	get requiredValidator(): RequiredValidator | undefined {
+		return this.validators.find(
+			validator => validator instanceof RequiredValidator
+		) as RequiredValidator
+	}
+
+	static parse(
+		inputField: { field: string, validators: Validator[] }
+			| Array<{ field: string, validators: Validator[] }>
+	): Field {
+		if (Array.isArray(inputField)) {
+			var _field = inputField[0]
+		} else {
+			var _field = inputField
+		}
 		let field = new Field(_field.field)
-		_field.validators.forEach((validator: { name: string; challenge: any; message: any }) => {
-			field.validators.push(new Validators[(validator.name as TValidatorName)](validator.challenge, validator.message))
-			//return new Validators[(validator.name as TValidatorName)](validator.challenge, validator.message)
-		}, field)
+		_field.validators.map(
+			(validator: { name: string; challenge: any; message: any }) => {
+				field.validators.push(
+					new Validators[
+						(validator.name as TValidatorName)
+					](validator.challenge, validator.message)
+				)
+			})
 		return field
 	}
 
-	required(message?: string) {
-		this.validators.push(new RequiredValidator(true, message))
+	required(message?: string, required: boolean = true) {
+		let requiredValidatorIndex = this.validators.findIndex(
+			validator => validator.name === "required"
+		)
+
+		if (requiredValidatorIndex === -1) {
+			this.validators.push(
+				new RequiredValidator(required, message)
+			)
+		}
+		else {
+			this.validators[requiredValidatorIndex] = new RequiredValidator(required, message)
+		}
 		return this
 	}
 

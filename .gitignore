@@ -1,2 +1,4 @@
 node_modules/
 trash/
+build/
+*.code-workspace

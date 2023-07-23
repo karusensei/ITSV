@@ -1,4 +1,4 @@
-import { EmailValidator, MaxLengthValidator, MinLengthValidator, PasswordValidator, RegExpValidator, TypeValidator } from "../validators/exports"
+import { EmailValidator, MaxLengthValidator, MinLengthValidator, PasswordValidator, RegExpValidator, RequiredValidator, TypeValidator } from "../validators/exports"
 import { Field } from "./exports"
 
 

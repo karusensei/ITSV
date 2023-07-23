@@ -25,7 +25,7 @@ Une problématique fait alors son apparition :
 
 ITSV permet :
  - De définir avec précision la strucutre des données fournies par l'utilisateurs
- - D'exporter cette définition au format JSON, celle-ci pouvant être réimporter en temps réel pour pouvoir être exploiter
+ - D'exporter cette définition au format JSON, celle-ci pouvant être réimporter en temps réel pour pouvoir être exploitée
  - De définir avec précision les conditions de validation des entrée utilisateurs pour chaque donnée.
 
 **DOC A POURSUIVRE.....**

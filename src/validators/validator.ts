@@ -2,7 +2,7 @@ import { Report } from "../reports/exports"
 import { TValidatorName } from "./validators.validators"
 
 
-interface IValidator {
+export interface IValidator {
 	name: TValidatorName | string
 	message: string
 	challenge: any
