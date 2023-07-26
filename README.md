@@ -13,19 +13,14 @@ Il est articulé autour de 3 classes :
 
 Ce module est développé pour apporter une réponse à la question de la validation des entrée utilisateurs sur les applications web modernes.
 
-Imaginons une application web moderne avec :
- - Un client développé en Javascript (sur angular par exemple)
- - Une API NodeJS
+# Prise en main rapide
 
-Ce type de conception exporte toute la logique d'affichage et l'enchainement des vues directement dans le navigateur client.
+La validation des données utilisateurs est réalisée de la manière suivante :
 
-Une problématique fait alors son apparition :
+ * Création d'un objet de type `SchemaDef` qui contiendra la structure des données à validée, ainsi que les règles de validation
+ * Instanciation d'un `Schema` prenant en paramètre le `SchemaDef`
+ * Validation des données par l'appel de la fonction `Schema(data)`
+ * Il est possible de générer un rapport qui contiendra tous les éléments du `Schema` ainsi que le rapport de chaque validateur pour chaque champs.
 
-> Ou, et comment dois-je valider les donnée de formulaires fournies par l'utilisateur ?
 
-ITSV permet :
- - De définir avec précision la strucutre des données fournies par l'utilisateurs
- - D'exporter cette définition au format JSON, celle-ci pouvant être réimporter en temps réel pour pouvoir être exploitée
- - De définir avec précision les conditions de validation des entrée utilisateurs pour chaque donnée.
-
-**DOC A POURSUIVRE.....**
+# Pour les exemples, voir [src/test.ts](src/test.ts)
